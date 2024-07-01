@@ -1,8 +1,11 @@
-// src/components/Navbar.js
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext';
-import { getAuth, signOut } from 'firebase/auth';
+import { Link } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
+import { getAuth, signOut } from "firebase/auth";
+import { FaHome } from "react-icons/fa";
+import { MdDashboard } from "react-icons/md";
+import { IoIosLogIn } from "react-icons/io";
+import { IoIosLogOut } from "react-icons/io";
+import "./Navbar.css";
 
 const Navbar = () => {
   const { currentUser } = useAuth();
@@ -11,33 +14,58 @@ const Navbar = () => {
     const auth = getAuth();
     try {
       await signOut(auth);
-      console.log('User signed out successfully');
+      console.log("User signed out successfully");
     } catch (error) {
-      console.error('Error signing out:', error);
+      console.error("Error signing out:", error);
     }
   };
 
   return (
-    <nav>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        {currentUser ? (
-          <>
-            <li>
-              <Link to="/dashboard">Dashboard</Link>
-            </li>
-            <li>
-              <button onClick={handleLogout}>Logout</button>
-            </li>
-          </>
-        ) : (
-          <li>
-            <Link to="/login">Login</Link>
+    <nav className="nav-cont ">
+      <div className="nav-logo">
+        <img src="/PEC_WEB.png" alt="img" />
+      </div>
+      <div className="nav-icons">
+        <ul className="nav-ul">
+          <li className="nav-li">
+            <Link to="/" className="navico ss">
+              <FaHome className="nav-pho" />
+              <div className="ss">
+                Home
+              </div>
+            </Link>
           </li>
-        )}
-      </ul>
+          {currentUser ? (
+            <>
+              <li className="nav-li">
+                <Link to="/dashboard" className="navico ss">
+                  <MdDashboard className="nav-pho" />
+                  <div className="ss">
+                    Dashboard
+                  </div>
+                </Link>
+              </li>
+              <li className="nav-li">
+                <button onClick={handleLogout}  className="navico nav-log">
+                  <IoIosLogOut className="nav-pho" />
+                  <div className="">
+                    Logout
+                  </div>
+                </button>
+              </li>
+            </>
+          ) : (
+            <li className="nav-li">
+              <Link to="/login" className="navico ss">
+                <IoIosLogIn className="nav-pho" />
+                <div className="ss">
+                  Login
+                </div>
+              </Link>
+            </li>
+          )}
+        </ul>
+      </div>
     </nav>
   );
 };

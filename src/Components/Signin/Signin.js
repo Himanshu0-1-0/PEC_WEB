@@ -11,6 +11,7 @@ const Login = () => {
     try {
       const result = await signInWithPopup(auth, googleProvider);
       const user = result.user;
+      console.log(user)
       const emailDomain = user.email.split('@')[1];
 
       if (emailDomain !== 'pec.edu.in') {
@@ -19,6 +20,7 @@ const Login = () => {
       } else {
         // Successful login
         console.log('Login successful with PEC email');
+        console.log(currentUser)
       }
     } catch (error) {
       setError(error.message);
@@ -29,7 +31,7 @@ const Login = () => {
       <div>
         <h2>Login with Google</h2>
         {currentUser ? (
-          <p>Welcome, {currentUser.email}</p>
+          <p>Welcome, {currentUser.displayName}</p>
         ) : (
           <button onClick={handleGoogleLogin}>Login with Google</button>
         )}
