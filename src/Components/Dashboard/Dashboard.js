@@ -2,6 +2,7 @@ import './Dashboard.css'
 import ProfileSection from './ProfileSection/ProfileSection'
 import MakePost from './MakePost/MakePost'
 import Posts from './Posts/Posts'
+import Updates from './Updates/Updates'
 
 export default function Dashboard() {
   return (
@@ -17,7 +18,7 @@ export default function Dashboard() {
         </div>
       </div>
       <div className="choose-depar">
-        d
+        <Updates/>
       </div>
     </div>
   )

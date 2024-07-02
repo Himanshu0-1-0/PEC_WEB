@@ -1,0 +1,49 @@
+.updates-cont{
+    background-color: #fdfff5;
+    margin: 3vh 30px;
+    margin-right: 45px;
+    position: fixed;
+    width: 24%;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    /* height: 82vh; */
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 25px;
+}
+.updt-logo img{
+    width: 100px;
+    height: 100px;
+    margin-top: 15px;
+}
+.updt-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.dd1 h2{
+    font-weight: 600;
+    font-size: 23px;
+    color: #555;
+    margin: 20px;
+}
+.dd2 p{
+    margin: 5px 15px;
+    color: #555;
+    font-weight: 500;
+}
+.updt-btn{
+    margin:20px 15px;
+}
+.updt-btn button{
+    background-color: #fe914e;
+    color: #fdfff5;
+    font-weight: 600;
+    font-size: 17px;
+}
+
+.updt-btn button:hover{
+    background-color: #ff7c2a;
+    color: #fdfff5;
+}
