@@ -1,6 +1,7 @@
 .dash-cont{
     min-height: 88vh;
     background-color: #f4f2ee;
+    padding-top: 12vh;
     display: flex;
     align-items: flex-start;
 }

@@ -1,0 +1,75 @@
+.Posts-cont{
+    background-color: #fdfff5;
+    margin: 13px 40px;
+    border-radius: 10px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    /* min-height: 500px; */
+}
+.one{
+    display: flex;
+    align-items: center;
+    margin:0px 10px;
+    /* border-bottom: 1px solid;
+    border-color: #999; */
+}
+.one-img img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 12px;
+    margin-left: 15px;
+}
+.one-cont{
+    margin: 0px 12px;
+}
+.one-name{
+    color: #666;
+    font-weight: 600;
+}
+.one-time{
+    color: #777;
+    font-weight: 400;
+    font-size: 12px;
+}
+.two{
+    margin-top: 7px;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    color: #666;
+    font-weight: 600;
+}
+.three img{
+    /* width: 600px; */
+    width: 100%;
+}
+.num{
+    display: flex;
+    align-items: center;
+    margin: 4px 15px;
+    /* border-bottom: 1px solid;
+    border-color: #999; */
+}
+.icos{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding-bottom: 10px;
+}
+.likes{
+    margin: 4px 15px;
+    font-weight: 600;
+    color: #777;
+    font-size: 14px;
+}
+.comments{
+    margin: 4px 15px;
+    font-weight: 600;
+    color: #777;
+    font-size: 14px;
+}
+.iccc{
+    width: 23px;
+    height: 23px;
+    color: #666;
+}

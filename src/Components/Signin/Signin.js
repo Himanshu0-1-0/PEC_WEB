@@ -29,6 +29,10 @@ const Login = () => {
 
     return (
       <div>
+        <h1>s</h1>
+        <h1>s</h1>
+        <h1>s</h1>
+        <h1>s</h1>
         <h2>Login with Google</h2>
         {currentUser ? (
           // <p>Welcome, {currentUser.displayName}</p>

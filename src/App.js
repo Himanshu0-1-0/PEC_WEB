@@ -4,12 +4,14 @@ import Login from './Components/Signin/Signin';
 import ProtectedRoute from './Components/Protection/Protection';
 import Navbar from './Components/Navbar/Navbar';
 import Dashboard from './Components/Dashboard/Dashboard';
+import Home from './Components/Home/Home';
 function App() {
   return (
    <>
     <Router>
       <Navbar/>
       <Routes>
+        <Route exact path="/" element={<Home/>} />
         <Route path="/login" element={<Login />} />
         <Route element={<ProtectedRoute />}>
           <Route path="/dashboard" element={<Dashboard />} />
