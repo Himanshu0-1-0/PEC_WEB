@@ -31,7 +31,9 @@ const Login = () => {
       <div>
         <h2>Login with Google</h2>
         {currentUser ? (
-          <p>Welcome, {currentUser.displayName}</p>
+          // <p>Welcome, {currentUser.displayName}</p>
+          <img src={currentUser.photoURL} alt="img" />
+          // <p>{currentUser.photoURL}</p>
         ) : (
           <button onClick={handleGoogleLogin}>Login with Google</button>
         )}

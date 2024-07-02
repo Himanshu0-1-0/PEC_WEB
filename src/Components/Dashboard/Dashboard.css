@@ -1,0 +1,20 @@
+.dash-cont{
+    min-height: 88vh;
+    background-color: #f4f2ee;
+    display: flex;
+    align-items: flex-start;
+}
+.dash-prof{
+    /* background-color: white; */
+    flex:0.24;
+    /* flex-direction: column; */
+
+}
+.post-cont{
+    background-color: yellow;
+    flex:0.46;
+}
+.choose-depar{
+    background-color: green;
+    flex: 0.3;
+}

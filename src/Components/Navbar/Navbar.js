@@ -5,6 +5,7 @@ import { FaHome } from "react-icons/fa";
 import { MdDashboard } from "react-icons/md";
 import { IoIosLogIn } from "react-icons/io";
 import { IoIosLogOut } from "react-icons/io";
+import { CgProfile } from "react-icons/cg";
 import "./Navbar.css";
 
 const Navbar = () => {
@@ -41,15 +42,23 @@ const Navbar = () => {
                 <Link to="/dashboard" className="navico ss">
                   <MdDashboard className="nav-pho" />
                   <div className="ss">
-                    Dashboard
+                    DashBoard
                   </div>
                 </Link>
               </li>
               <li className="nav-li">
+            <Link to="/profile" className="navico ss">
+              <CgProfile className="nav-pho" />
+              <div className="ss">
+                Profile
+              </div>
+            </Link>
+          </li>
+              <li className="nav-li">
                 <button onClick={handleLogout}  className="navico nav-log">
                   <IoIosLogOut className="nav-pho" />
                   <div className="">
-                    Logout
+                    LogOut
                   </div>
                 </button>
               </li>
@@ -59,7 +68,7 @@ const Navbar = () => {
               <Link to="/login" className="navico ss">
                 <IoIosLogIn className="nav-pho" />
                 <div className="ss">
-                  Login
+                  LogIn
                 </div>
               </Link>
             </li>
