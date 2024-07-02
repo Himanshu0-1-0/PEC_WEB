@@ -11,10 +11,9 @@
 
 }
 .post-cont{
-    background-color: yellow;
-    flex:0.46;
+    flex:0.44;
 }
 .choose-depar{
     background-color: green;
-    flex: 0.3;
+    flex: 0.32;
 }

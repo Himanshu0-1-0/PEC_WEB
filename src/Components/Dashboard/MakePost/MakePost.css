@@ -1,0 +1,55 @@
+.make-cont{
+    /* background-color: yellow; */
+    margin: 3vh 10px;
+    min-height: 90px;
+    border-bottom:2px solid ;
+    border-color: #999;
+}
+.make-cont2{
+    background-color: #fdfff5;
+    min-height: 70px;
+    margin:0px 5px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+}
+.photu img{
+    height: 45px;
+    width: 45px;
+    margin-left: 15px;
+    border-radius: 50%;
+}
+.make{
+    /* background-color: yellow; */
+    margin: 10px;
+    border: 1px solid;
+    border-color: #777;
+    border-radius: 30px;
+    /* padding: 10px; */
+    height: 35px;
+    flex: 1;
+    transition: background-color 0.5s ease;
+    display: flex;
+    align-items: center;
+}
+.make:hover{
+    background-color: #f4f2ee;
+}
+.ssp{
+    font-size: 15px;
+    color: #777;
+    font-weight:500;
+    margin: 0px 10px;
+    margin-left: 5px;
+    /* background-color: green; */
+}
+.ppp{
+    margin-left: 10px;
+    margin-right: 5px;
+    height: 20px;
+    width: 20px;
+    color: #777;
+    /* background-color: blue; */
+}

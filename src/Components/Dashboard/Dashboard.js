@@ -1,5 +1,6 @@
 import './Dashboard.css'
 import ProfileSection from './ProfileSection/ProfileSection'
+import MakePost from './MakePost/MakePost'
 
 export default function Dashboard() {
   return (
@@ -8,9 +9,7 @@ export default function Dashboard() {
         <ProfileSection/>
       </div>
       <div className="post-cont">
-        <div className="make-post">
-          s
-        </div>
+        <MakePost/>
         <div className="posts">
 
         </div>
