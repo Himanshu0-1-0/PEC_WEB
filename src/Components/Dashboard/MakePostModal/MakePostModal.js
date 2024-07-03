@@ -2,9 +2,11 @@ import "./MakePostModal.css"
 import  { useRef } from 'react';
 import Modal from 'react-modal';
 import { db, storage } from '../../../firebase'; // Import Firebase and Firestore references
-import { doc, setDoc ,addDoc,collection} from 'firebase/firestore';
+import {addDoc,collection} from 'firebase/firestore';
 import { ref, uploadBytes,getDownloadURL } from 'firebase/storage';
 import {useAuth} from "../../../context/AuthContext"
+// import { LuFolderMinus } from "react-icons/lu";
+// import { TbLayoutGridRemove } from "react-icons/tb";
  
 Modal.setAppElement('#root');
 
@@ -52,28 +54,19 @@ export default function MakePostModal({ isOpen, onRequestClose }) {
                 timestamp: new Date(),
                 likes: [],
                 comments: [],
-                postedBy: currentUser.uid
+                postedBy: {
+                  _id:currentUser.uid,
+                  name:currentUser.displayName,
+                  profilePic:currentUser.photoURL
+                }
               })
               .then(() => {
-                alert('Post submitted 👍' );
+                console.log('Post added successfully');
               })
               .catch((error) => {
                 console.log(error.message);
               });
-
-            // const postsCollectionRef =db.collection('posts');; 
-            // const newPostRef = doc(postsCollectionRef);
-            // await setDoc(newPostRef, {
-            //     caption: caption,
-            //     photoUrl: photoUrl,
-            //     timestamp: new Date(),
-            //     likes: [],
-            //     comments: [],
-            //     postedBy: currentUser.uid
-            //   });
-      
-            console.log('Post added successfully');
-      
+              
             // Reset form
             e.target.reset();
             onRequestClose();
@@ -83,7 +76,6 @@ export default function MakePostModal({ isOpen, onRequestClose }) {
           }
       };
 
-      
   return (
     <div>
          <Modal isOpen={isOpen} onRequestClose={onRequestClose} style={customStyles}>

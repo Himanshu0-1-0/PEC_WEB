@@ -28,7 +28,8 @@ const Login = () => {
             email: user.email,
             name: user.displayName,
             posts: [],
-            authorities: []
+            authorities: [],
+            profilePic: user.photoURL
           });
           console.log('User added to the database');
         } else {

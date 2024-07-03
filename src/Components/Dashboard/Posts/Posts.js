@@ -1,40 +1,41 @@
 import "./Posts.css"
-import { useAuth } from "../../../context/AuthContext";
+// import { useAuth } from "../../../context/AuthContext";
 import { AiOutlineLike } from "react-icons/ai";
 // import { AiTwotoneLike } from "react-icons/ai";
 import { FaRegComments } from "react-icons/fa6";
 
 
-export default function Posts() {
-    const {currentUser} = useAuth();
+export default function Posts({caption,postedBy,timestamp,photoUrl,likes,comments}) {
+    // const {currentUser} = useAuth();
+    const formattedTimestamp = new Date(timestamp.seconds * 1000).toLocaleString();
   return (
     <div className="Posts-cont">
       <div className="one border-bottom">
        <div className="one-img">
-        <img src={currentUser.photoURL} alt="Image..." />
+        <img src={postedBy.profilePic} alt="Image..." />
        </div>
        <div className="one-cont">
         <div className="one-name">
-            {currentUser.displayName}
+            {postedBy.name}
         </div>
         <div className="one-time">
-            20 Dec,2022 05:04 am
+            {formattedTimestamp}
         </div>
        </div>
       </div>
       <div className="two">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut nesciunt porro aliquam totam harum, quasi odit optio consequuntur facilis praesentium modi consectetur ut maiores provident neque exercitationem ex cupiditate earum.
-      </div>
+        {caption}
+       </div>
       <div className="three">
-        <img src="/Post.jpg" alt="Post_Img" />
+        <img src={photoUrl} alt="Post_Img" />
       </div>
       <div className="four">
         <div className="num border-top border-bottom">
             <div className="likes">
-                33 Likes
+                {likes.length} Likes
             </div>
             <div className="comments">
-                10 Comments
+                {comments.length} Comments
             </div>
         </div>
         <div className="icos">
