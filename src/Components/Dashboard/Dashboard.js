@@ -29,7 +29,7 @@ export default function Dashboard() {
         id: doc.id,
         ...doc.data()
       }));
-  
+      console.log(newPosts)
       console.log('Fetched posts:', newPosts);
   
       setPosts(prevPosts => [...prevPosts, ...newPosts]);
@@ -74,6 +74,7 @@ export default function Dashboard() {
         {posts.map(post => (
             <Posts
               key={post.id}
+              id={post.id}
               caption={post.caption}
               postedBy={post.postedBy}
               timestamp={post.timestamp}
