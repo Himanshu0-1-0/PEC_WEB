@@ -16,9 +16,9 @@ export default function Updates() {
         </p>
         </div>     
         <div className="updt-btn">
-        <button type="button" class="btn ">Explore Department Updates.. </button>
+        <button type="button" className="btn ">Explore Department Updates.. </button>
         </div>
-        <button type="button" class="btn btn-danger">Manage Authority..</button>
+        <button type="button" className="btn btn-danger">Manage Authority..</button>
       </div>
     </div>
   )

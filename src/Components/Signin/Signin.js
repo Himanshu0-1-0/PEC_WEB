@@ -52,7 +52,8 @@ const Login = () => {
         <h2>Login with Google</h2>
         {currentUser ? (
           // <p>Welcome, {currentUser.displayName}</p>
-          <img src={currentUser.photoURL} alt="img" />
+          // <img src={currentUser.photoURL} alt="img" />.
+          <p>{currentUser.uid}</p>
           // <p>{currentUser.photoURL}</p>
         ) : (
           <button onClick={handleGoogleLogin}>Login with Google</button>
