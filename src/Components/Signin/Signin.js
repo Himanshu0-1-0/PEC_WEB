@@ -1,7 +1,8 @@
 // src/components/GoogleLogin.js
 import React, { useState } from "react";
-import { auth, googleProvider, signInWithPopup } from "../../firebase.js";
+import { auth, googleProvider, signInWithPopup,db } from "../../firebase.js";
 import { useAuth } from "../../context/AuthContext.js";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
 const Login = () => {
   const [error, setError] = useState(null);
@@ -18,11 +19,26 @@ const Login = () => {
         await auth.signOut();
         setError('You must sign in with a pec.edu.in email address.');
       } else {
-        // Successful login
+        const userDocRef = doc(db, 'users', user.uid);
+        console.log(user.uid);
+        const userDoc = await getDoc(userDocRef);
+        if (!userDoc.exists()) {
+          // Add new user to the database
+          await setDoc(userDocRef, {
+            email: user.email,
+            name: user.displayName,
+            posts: [],
+            authorities: []
+          });
+          console.log('User added to the database');
+        } else {
+          console.log('User already exists in the database');
+        }
         console.log('Login successful with PEC email');
         console.log(currentUser)
       }
     } catch (error) {
+      console.log(error);
       setError(error.message);
     }
     };
