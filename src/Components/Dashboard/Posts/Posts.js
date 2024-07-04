@@ -6,7 +6,9 @@ import { FaRegComments } from "react-icons/fa6";
 import {db} from "../../../firebase";
 import { doc, updateDoc } from 'firebase/firestore';
 import debounce from 'lodash.debounce';
-import { useState,useEffect ,useCallback} from "react";
+import { useState,useEffect ,useCallback,useRef} from "react";
+import Comment from "./Comment/Comment";
+import { v4 as uuidv4 } from 'uuid';
 
 export default function Posts({id,caption,postedBy,timestamp,photoUrl,likes,comments}) {
     const {currentUser} = useAuth();
@@ -15,6 +17,54 @@ export default function Posts({id,caption,postedBy,timestamp,photoUrl,likes,comm
     const [likeCount, setLikeCount] = useState(likes.length);
     const [liked, setLiked] = useState(false);
 
+    const [showComments, setShowComments] = useState(false);
+    const [newComment,setNewComment] = useState(null);
+    const [commentCount,setCommentCount] =useState(comments.length);
+    const commentInputRef = useRef(null);
+    //handling comments
+
+    useEffect(()=>{
+      setNewComment(comments);
+    },[])
+
+    const handleCommentClick =()=>{
+      setShowComments((prev)=>{
+        return !prev;
+      })
+    }
+
+    const handleCommentSubmit = async () => {
+      const commentText = commentInputRef.current.value;
+      if (!commentText) return;
+
+      const commentId = uuidv4();
+      const newCommentObj = {
+          id: commentId,
+          text: commentText,
+          timestamp: new Date(),
+          postedBy: {
+              name: currentUser.displayName,
+              profilePic: currentUser.photoURL
+          }
+      };
+
+      try {
+          const postRef = doc(db, 'posts', id);
+          await updateDoc(postRef, {
+              comments: [newCommentObj,...newComment ]
+          });
+
+          setNewComment(prevComments => [newCommentObj, ...prevComments]);
+          setCommentCount(prevCount => prevCount + 1);
+          commentInputRef.current.value = '';
+      } catch (error) {
+          console.error('Error adding comment:', error.message);
+      }
+  };
+
+
+
+    //handling likes
     useEffect(() => {
 
       setLiked(likes.some(like => like.uid === currentUser.uid));
@@ -80,7 +130,7 @@ export default function Posts({id,caption,postedBy,timestamp,photoUrl,likes,comm
                 {likeCount} Likes
             </div>
             <div className="comments">
-                {comments.length} Comments
+                {commentCount} Comments
             </div>
         </div>
         <div className="icos">
@@ -89,14 +139,34 @@ export default function Posts({id,caption,postedBy,timestamp,photoUrl,likes,comm
               <AiOutlineLike className="iccc"/>
               </button>
             </div>
+            <button onClick={handleCommentClick}>
             <div className="com">
                 <FaRegComments className="iccc"/>
             </div>
+            </button>
         </div>
       </div>
-      <div className="five">
-
-      </div>
+        {showComments && 
+          <div className="five">
+            <div className="inp-box">
+               <div className="input-group mb-3 container">
+              <input type="text" className="form-control ippi" placeholder="Type Here!.." aria-label="Recipient's username" aria-describedby="button-addon2" ref={commentInputRef} />
+              <button className="btn btn-outline-secondary jdj " type="button" id="button-addon2" onClick={handleCommentSubmit}>Comment.</button>
+            </div>
+            </div>
+            <div className="coms">
+            {newComment.map((comment) => (
+              <Comment
+                key={comment.id}
+                profilePic={comment.postedBy.profilePic}
+                name={comment.postedBy.name}
+                content={comment.text}
+                timestamp={comment.timestamp}
+              />
+            ))}
+            </div>
+          </div>
+        }
     </div>
   )
 }

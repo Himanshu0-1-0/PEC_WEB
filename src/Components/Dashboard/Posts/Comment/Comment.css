@@ -1,0 +1,35 @@
+.comm-cont{
+    margin: 20px;
+    display: flex;
+}
+.cscs{
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+}
+.cont21{
+    /* background-color: blue; */
+    flex:1;
+    padding-bottom: 9px;
+    margin: 0px 10px;
+
+}
+.cnoc-cont{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.cnoc{
+    font-weight: 600;
+    color: #555;
+}
+.toto{
+    font-size: 12px;
+    font-weight: 500;
+    color: #666;
+}
+.snknfk{
+    color: #666;
+    font-weight: 400;
+    font-size: 14px;
+}
