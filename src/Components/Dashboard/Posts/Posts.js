@@ -1,160 +1,185 @@
-import "./Posts.css"
+import "./Posts.css";
 import { useAuth } from "../../../context/AuthContext";
 import { AiOutlineLike } from "react-icons/ai";
 // import { AiTwotoneLike } from "react-icons/ai";
 import { FaRegComments } from "react-icons/fa6";
-import {db} from "../../../firebase";
-import { doc, updateDoc } from 'firebase/firestore';
-import debounce from 'lodash.debounce';
-import { useState,useEffect ,useCallback,useRef} from "react";
+import { db } from "../../../firebase";
+import { doc, updateDoc } from "firebase/firestore";
+import debounce from "lodash.debounce";
+import { useState, useEffect, useCallback, useRef } from "react";
 import Comment from "./Comment/Comment";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
+import LikesModal from "./LikesModal/LikesModal";
 
-export default function Posts({id,caption,postedBy,timestamp,photoUrl,likes,comments}) {
-    const {currentUser} = useAuth();
-    const formattedTimestamp = new Date(timestamp.seconds * 1000).toLocaleString();
+export default function Posts({
+  id,
+  caption,
+  postedBy,
+  timestamp,
+  photoUrl,
+  likes,
+  comments,
+}) {
+  const { currentUser } = useAuth();
+  const formattedTimestamp = new Date(
+    timestamp.seconds * 1000
+  ).toLocaleString();
 
-    const [likeCount, setLikeCount] = useState(likes.length);
-    const [liked, setLiked] = useState(false);
+  const [likeCount, setLikeCount] = useState(likes.length);
+  const [liked, setLiked] = useState(false);
 
-    const [showComments, setShowComments] = useState(false);
-    const [newComment,setNewComment] = useState(null);
-    const [commentCount,setCommentCount] =useState(comments.length);
-    const commentInputRef = useRef(null);
-    //handling comments
+  const [showComments, setShowComments] = useState(false);
+  const [newComment, setNewComment] = useState(null);
+  const [commentCount, setCommentCount] = useState(comments.length);
+  const commentInputRef = useRef(null);
 
-    useEffect(()=>{
-      setNewComment(comments);
-    },[])
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const handleCommentClick =()=>{
-      setShowComments((prev)=>{
-        return !prev;
-      })
-    }
 
-    const handleCommentSubmit = async () => {
-      const commentText = commentInputRef.current.value;
-      if (!commentText) return;
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
 
-      const commentId = uuidv4();
-      const newCommentObj = {
-          id: commentId,
-          text: commentText,
-          timestamp: new Date(),
-          postedBy: {
-              name: currentUser.displayName,
-              profilePic: currentUser.photoURL
-          }
-      };
-
-      try {
-          const postRef = doc(db, 'posts', id);
-          await updateDoc(postRef, {
-              comments: [newCommentObj,...newComment ]
-          });
-
-          setNewComment(prevComments => [newCommentObj, ...prevComments]);
-          setCommentCount(prevCount => prevCount + 1);
-          commentInputRef.current.value = '';
-      } catch (error) {
-          console.error('Error adding comment:', error.message);
-      }
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
 
+  //handling comments
 
-    //handling likes
-    useEffect(() => {
+  useEffect(() => {
+    setNewComment(comments);
+  }, []);
 
-      setLiked(likes.some(like => like.uid === currentUser.uid));
-    }, [likes, currentUser.uid]);
+  const handleCommentClick = () => {
+    setShowComments((prev) => {
+      return !prev;
+    });
+  };
 
-    const handleLike = () => {
-      setLiked(!liked);
-      setLikeCount(prevCount => (liked ? prevCount - 1 : prevCount + 1));
-      debounceUpdateLikes();
+  const handleCommentSubmit = async () => {
+    const commentText = commentInputRef.current.value;
+    if (!commentText) return;
+
+    const commentId = uuidv4();
+    const newCommentObj = {
+      id: commentId,
+      text: commentText,
+      timestamp: new Date(),
+      postedBy: {
+        name: currentUser.displayName,
+        profilePic: currentUser.photoURL,
+      },
     };
 
-    const debounceUpdateLikes = useCallback(
-      debounce(async () => {
-        const postRef = doc(db, 'posts', id);
-        const likeObj = {
-          name: currentUser.displayName,
-          uid: currentUser.uid,
-          photo: currentUser.photoURL
-        };
-  
-        try {
-          if (liked) {
-            await updateDoc(postRef, {
-              likes: likes.filter(like => like.uid !== currentUser.uid)
-            });
-          } else {
-            await updateDoc(postRef, {
-              likes: [...likes, likeObj]
-            });
-          }
-        } catch (error) {
-          console.error('Error updating likes:', error.message);
-        }
-      }, 1000), // 1 second debounce
-      [liked, id, currentUser, likes]
-    );
+    try {
+      const postRef = doc(db, "posts", id);
+      await updateDoc(postRef, {
+        comments: [newCommentObj, ...newComment],
+      });
 
-    
+      setNewComment((prevComments) => [newCommentObj, ...prevComments]);
+      setCommentCount((prevCount) => prevCount + 1);
+      commentInputRef.current.value = "";
+    } catch (error) {
+      console.error("Error adding comment:", error.message);
+    }
+  };
+
+  //handling likes
+  useEffect(() => {
+    setLiked(likes.some((like) => like.uid === currentUser.uid));
+  }, [likes, currentUser.uid]);
+
+  const handleLike = () => {
+    setLiked(!liked);
+    setLikeCount((prevCount) => (liked ? prevCount - 1 : prevCount + 1));
+    debounceUpdateLikes();
+  };
+
+  const debounceUpdateLikes = useCallback(
+    debounce(async () => {
+      const postRef = doc(db, "posts", id);
+      const likeObj = {
+        name: currentUser.displayName,
+        uid: currentUser.uid,
+        photo: currentUser.photoURL,
+      };
+
+      try {
+        if (liked) {
+          await updateDoc(postRef, {
+            likes: likes.filter((like) => like.uid !== currentUser.uid),
+          });
+        } else {
+          await updateDoc(postRef, {
+            likes: [...likes, likeObj],
+          });
+        }
+      } catch (error) {
+        console.error("Error updating likes:", error.message);
+      }
+    }, 1000), // 1 second debounce
+    [liked, id, currentUser, likes]
+  );
+
   return (
     <div className="Posts-cont">
       <div className="one border-bottom">
-       <div className="one-img">
-        <img src={postedBy.profilePic} alt="Image..." />
-       </div>
-       <div className="one-cont">
-        <div className="one-name">
-            {postedBy.name}
+        <div className="one-img">
+          <img src={postedBy.profilePic} alt="Image..." />
         </div>
-        <div className="one-time">
-            {formattedTimestamp}
+        <div className="one-cont">
+          <div className="one-name">{postedBy.name}</div>
+          <div className="one-time">{formattedTimestamp}</div>
         </div>
-       </div>
       </div>
-      <div className="two">
-        {caption}
-       </div>
+      <div className="two">{caption}</div>
       <div className="three">
         <img src={photoUrl} alt="Post_Img" />
       </div>
       <div className="four">
         <div className="num border-top border-bottom">
-            <div className="likes">
-                {likeCount} Likes
-            </div>
-            <div className="comments">
-                {commentCount} Comments
-            </div>
+          <div className="likes" onClick={openModal}>{likeCount} Likes</div>
+          <LikesModal isOpen={isModalOpen} onRequestClose={closeModal} likes={likes} />
+          <div className="comments">{commentCount} Comments</div>
         </div>
         <div className="icos">
-            <div className="lik" >
-              <button onClick={handleLike}>
-              <AiOutlineLike className="iccc"/>
-              </button>
-            </div>
-            <button onClick={handleCommentClick}>
-            <div className="com">
-                <FaRegComments className="iccc"/>
-            </div>
+          <div className="lik">
+            <button onClick={handleLike}>
+              <AiOutlineLike className="iccc" />
             </button>
+          </div>
+          <button onClick={handleCommentClick}>
+            <div className="com">
+              <FaRegComments className="iccc" />
+            </div>
+          </button>
         </div>
       </div>
-        {showComments && 
-          <div className="five">
-            <div className="inp-box">
-               <div className="input-group mb-3 container">
-              <input type="text" className="form-control ippi" placeholder="Type Here!.." aria-label="Recipient's username" aria-describedby="button-addon2" ref={commentInputRef} />
-              <button className="btn btn-outline-secondary jdj " type="button" id="button-addon2" onClick={handleCommentSubmit}>Comment.</button>
+      {showComments && (
+        <div className="five">
+          <div className="inp-box">
+            <div className="input-group mb-3 container">
+              <input
+                type="text"
+                className="form-control ippi"
+                placeholder="Type Here!.."
+                aria-label="Recipient's username"
+                aria-describedby="button-addon2"
+                ref={commentInputRef}
+              />
+              <button
+                className="btn btn-outline-secondary jdj "
+                type="button"
+                id="button-addon2"
+                onClick={handleCommentSubmit}
+              >
+                Comment.
+              </button>
             </div>
-            </div>
-            <div className="coms">
+          </div>
+          <div className="coms">
             {newComment.map((comment) => (
               <Comment
                 key={comment.id}
@@ -164,9 +189,9 @@ export default function Posts({id,caption,postedBy,timestamp,photoUrl,likes,comm
                 timestamp={comment.timestamp}
               />
             ))}
-            </div>
           </div>
-        }
+        </div>
+      )}
     </div>
-  )
+  );
 }
