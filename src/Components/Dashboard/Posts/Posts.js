@@ -20,11 +20,11 @@ export default function Posts({
   likes,
   comments,
 }) {
+  
   const { currentUser } = useAuth();
-  const formattedTimestamp = new Date(
-    timestamp.seconds * 1000
-  ).toLocaleString();
-
+  const formattedTimestamp = timestamp && timestamp.seconds
+    ? new Date(timestamp.seconds * 1000).toLocaleString()
+    : "Unknown Date";
   const [likeCount, setLikeCount] = useState(likes.length);
   const [liked, setLiked] = useState(false);
 

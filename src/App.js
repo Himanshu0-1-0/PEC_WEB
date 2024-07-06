@@ -6,6 +6,7 @@ import Navbar from './Components/Navbar/Navbar';
 import Dashboard from './Components/Dashboard/Dashboard';
 import Home from './Components/Home/Home';
 import DepartmentUpdates from './Components/DepartmentUpdates/DepartmentUpdates';
+import UserProfile from './Components/UserProfile/UserProfile';
 function App() {
   return (
    <>
@@ -17,6 +18,7 @@ function App() {
         <Route element={<ProtectedRoute />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/updates/:department/:year" element={<DepartmentUpdates/>}/>
+          <Route path="/profile" element={<UserProfile />} />
         </Route>
       </Routes>
     </Router>
