@@ -1,6 +1,17 @@
+import DepartmentUpdatesButton from "./UpdateModal/DepartmentUpdatesButton";
 import "./Updates.css"
+import { useState } from "react";
 
 export default function Updates() {
+  const [isModalUpdateOpen, setIsModalUpdateOpen] = useState(false);
+  const openUpdateModal = () => {
+    setIsModalUpdateOpen(true);
+  };
+
+  const closeUpdateModal = () => {
+    setIsModalUpdateOpen(false);
+  };
+
   return (
     <div className="updates-cont">
       <div className="updt-logo">
@@ -16,7 +27,8 @@ export default function Updates() {
         </p>
         </div>     
         <div className="updt-btn">
-        <button type="button" className="btn ">Explore Department Updates.. </button>
+        <button type="button" className="btn " onClick={openUpdateModal}>Explore Department Updates.. </button>
+        <DepartmentUpdatesButton isModalUpdateOpen={isModalUpdateOpen} closeUpdateModal={closeUpdateModal}/>
         </div>
         <button type="button" className="btn btn-danger">Manage Authority..</button>
       </div>

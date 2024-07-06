@@ -5,6 +5,7 @@ import { db, storage } from "../../../firebase"; // Import Firebase and Firestor
 import { addDoc, collection, doc, updateDoc,getDoc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { useAuth } from "../../../context/AuthContext";
+import { useParams } from "react-router-dom";
 // import { LuFolderMinus } from "react-icons/lu";
 // import { TbLayoutGridRemove } from "react-icons/tb";
 
@@ -13,6 +14,7 @@ Modal.setAppElement("#root");
 export default function MakePostModal({ isOpen, onRequestClose }) {
   const captionRef = useRef(null);
   const photoRef = useRef(null);
+  const { department, year } = useParams();
 
   const { currentUser } = useAuth();
 
@@ -62,7 +64,16 @@ export default function MakePostModal({ isOpen, onRequestClose }) {
       const postId = postRef.id;
       console.log("Post added successfully with ID:", postId);
 
-      // Update user's posts array
+      
+      if (department && year) {
+        await addDoc(collection(db, "department_updates"), {
+          department: department,
+          year: year,
+          post: postId,
+        });
+        console.log("Department update added successfully");
+      }else{
+        // Update user's posts array
       const userRef = doc(db, "users", currentUser.uid);
 
       const userDoc = await getDoc(userRef);
@@ -71,8 +82,10 @@ export default function MakePostModal({ isOpen, onRequestClose }) {
       await updateDoc(userRef, {
         posts: [...userPosts, postId],
       });
-
       console.log("User's posts array updated successfully");
+
+      }
+
       e.target.reset();
       onRequestClose();
     } catch (error) {

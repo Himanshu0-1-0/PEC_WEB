@@ -5,6 +5,7 @@ import ProtectedRoute from './Components/Protection/Protection';
 import Navbar from './Components/Navbar/Navbar';
 import Dashboard from './Components/Dashboard/Dashboard';
 import Home from './Components/Home/Home';
+import DepartmentUpdates from './Components/DepartmentUpdates/DepartmentUpdates';
 function App() {
   return (
    <>
@@ -15,6 +16,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route element={<ProtectedRoute />}>
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/updates/:department/:year" element={<DepartmentUpdates/>}/>
         </Route>
       </Routes>
     </Router>
