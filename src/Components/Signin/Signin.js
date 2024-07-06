@@ -6,7 +6,7 @@ import { doc, getDoc, setDoc } from "firebase/firestore";
 
 const Login = () => {
   const [error, setError] = useState(null);
-  const { currentUser } = useAuth();
+  const { currentUser,isAuthority,userPosts } = useAuth();
 
   const handleGoogleLogin = async () => {
     try {
@@ -36,7 +36,7 @@ const Login = () => {
           console.log('User already exists in the database');
         }
         console.log('Login successful with PEC email');
-        console.log(currentUser)
+        console.log(userPosts)
       }
     } catch (error) {
       console.log(error);
@@ -54,7 +54,11 @@ const Login = () => {
         {currentUser ? (
           // <p>Welcome, {currentUser.displayName}</p>
           // <img src={currentUser.photoURL} alt="img" />.
+          <>
           <p>{currentUser.uid}</p>
+          <p>{isAuthority=="true"?"Ss":"Aa"}</p>
+          </>
+          
           // <p>{currentUser.photoURL}</p>
         ) : (
           <button onClick={handleGoogleLogin}>Login with Google</button>
