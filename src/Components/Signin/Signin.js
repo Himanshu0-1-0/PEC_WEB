@@ -3,8 +3,11 @@ import React, { useState } from "react";
 import { auth, googleProvider, signInWithPopup,db } from "../../firebase.js";
 import { useAuth } from "../../context/AuthContext.js";
 import { doc, getDoc, setDoc } from "firebase/firestore";
+import { useNavigate } from 'react-router-dom';
+import "./Signin.css"
 
 const Login = () => {
+  const navigate = useNavigate();
   const [error, setError] = useState(null);
   const { currentUser,isAuthority,userPosts } = useAuth();
 
@@ -36,7 +39,8 @@ const Login = () => {
           console.log('User already exists in the database');
         }
         console.log('Login successful with PEC email');
-        console.log(userPosts)
+        console.log(userPosts);
+        navigate('/dashboard');
       }
     } catch (error) {
       console.log(error);
@@ -45,23 +49,29 @@ const Login = () => {
     };
 
     return (
-      <div>
-        <h1>s</h1>
-        <h1>s</h1>
-        <h1>s</h1>
-        <h1>s</h1>
+      <div className="csd">
+        <div className="sls">
+          <img src="/PEC.png" alt="PEC_logo" className="sasw"/>
+        </div>
+        <div className="adad">
         <h2>Login with Google</h2>
+        </div>
+        
         {currentUser ? (
-          // <p>Welcome, {currentUser.displayName}</p>
-          // <img src={currentUser.photoURL} alt="img" />.
-          <>
-          <p>{currentUser.uid}</p>
-          <p>{isAuthority=="true"?"Ss":"Aa"}</p>
-          </>
+          <p>Welcome, {currentUser.displayName}</p>
+          // <>
+          // <p>{currentUser.uid}</p>
+          // <img src={currentUser.photoURL} alt="img" />
+          // <p>{isAuthority=="true"?"Ss":"Aa"}</p>
+          // </>
           
           // <p>{currentUser.photoURL}</p>
         ) : (
-          <button onClick={handleGoogleLogin}>Login with Google</button>
+          <button onClick={handleGoogleLogin} className="saow "> 
+        <img src="/google.png" alt="Google Logo"  className="saq"/>
+               <div className="dfd">
+               Login with Google
+                </div></button>
         )}
         {error && <p>{error}</p>}
       </div>

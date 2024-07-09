@@ -21,6 +21,11 @@
     margin-left: 15px;
     border-radius: 50%;
 }
+.dadad{
+    width: 100%;
+    border: none;
+    background-color: rgba(240, 248, 255, 0);
+}
 .make{
     /* background-color: yellow; */
     margin: 10px;

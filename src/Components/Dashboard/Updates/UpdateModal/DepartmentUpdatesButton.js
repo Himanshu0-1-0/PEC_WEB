@@ -1,9 +1,7 @@
-// DepartmentUpdatesButton.js
-import "./DepartmentalUpdates.css"
+import "./DepartmentalUpdates.css";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Modal from "react-modal";
-
 
 Modal.setAppElement('#root'); // Set the app root element for accessibility
 
@@ -11,12 +9,11 @@ const departments = ["CSE", "ECE", "EE", "MECH", "METALLURGY", "PRODUCTION"];
 const currentYear = new Date().getFullYear();
 const years = Array.from({ length: 5 }, (_, i) => currentYear + i);
 
-const DepartmentUpdatesButton = ({isModalUpdateOpen,closeUpdateModal}) => {
+const DepartmentUpdatesButton = ({ isModalUpdateOpen, closeUpdateModal }) => {
   const [selectedDepartment, setSelectedDepartment] = useState(departments[0]);
   const [selectedYear, setSelectedYear] = useState(currentYear);
   const navigate = useNavigate();
 
-  
   const handleDepartmentChange = (event) => {
     setSelectedDepartment(event.target.value);
   };

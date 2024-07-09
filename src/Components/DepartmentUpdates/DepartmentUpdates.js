@@ -5,12 +5,13 @@ import { collection, query, where, getDocs } from "firebase/firestore";
 import Post from "../Dashboard/Posts/Posts"; // Adjust the import according to your project structure
 import { useParams } from "react-router-dom";
 import MakePost from "../Dashboard/MakePost/MakePost";
+import { useAuth } from "../../context/AuthContext";
 const DepartmentUpdates = () => {
   const { department, year } = useParams();
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const {isAuthority} =useAuth();
   useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -67,7 +68,11 @@ const DepartmentUpdates = () => {
 
   return (
     <div className="conoo">
-        <MakePost/>
+      {isAuthority=="true"? <div className="dsda">
+      <MakePost/>
+      </div>:undefined}
+     
+      <div className="dads">
       {posts.map(post => (
         <Post
           key={post.id}
@@ -80,6 +85,7 @@ const DepartmentUpdates = () => {
           comments={post.comments}
         />
       ))}
+      </div>
     </div>
   );
 };

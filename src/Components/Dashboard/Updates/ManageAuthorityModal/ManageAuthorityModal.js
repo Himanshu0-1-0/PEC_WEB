@@ -1,3 +1,4 @@
+import "./ManageAuthorityModal.css";
 import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { db } from '../../../../firebase';
@@ -8,17 +9,6 @@ Modal.setAppElement('#root'); // Make sure this matches your app root element
 const ManageAuthorityModal = ({ isOpen, onRequestClose }) => {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
-
-  const customStyles = {
-    content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-    },
-  };
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -50,7 +40,12 @@ const ManageAuthorityModal = ({ isOpen, onRequestClose }) => {
   };
 
   return (
-    <Modal isOpen={isOpen} onRequestClose={onRequestClose} style={customStyles}>
+    <Modal
+      isOpen={isOpen}
+      onRequestClose={onRequestClose}
+      className="ModalContent"
+      overlayClassName="ModalOverlay"
+    >
       <h2>Manage Authority</h2>
       <form
         onSubmit={(e) => {

@@ -21,7 +21,7 @@ export default function MakePost() {
         <div className="make">
             <RiAddCircleLine className="ppp"/>
             <MakePostModal isOpen={isMPModalOpen} onRequestClose={closeMPModal} />
-            <button onClick={openMPModal}>
+            <button onClick={openMPModal} className="dadad">
             <div className="ssp">
                 Make a Post..
             </div>

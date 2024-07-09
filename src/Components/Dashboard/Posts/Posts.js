@@ -1,7 +1,7 @@
 import "./Posts.css";
 import { useAuth } from "../../../context/AuthContext";
 import { AiOutlineLike } from "react-icons/ai";
-// import { AiTwotoneLike } from "react-icons/ai";
+import { AiTwotoneLike } from "react-icons/ai";
 import { FaRegComments } from "react-icons/fa6";
 import { db } from "../../../firebase";
 import { doc, updateDoc } from "firebase/firestore";
@@ -136,7 +136,7 @@ export default function Posts({
       </div>
       <div className="two">{caption}</div>
       <div className="three">
-        <img src={photoUrl} alt="Post_Img" />
+      {photoUrl?<img src={photoUrl} alt="Post_Img" />:undefined}
       </div>
       <div className="four">
         <div className="num border-top border-bottom">
@@ -146,11 +146,11 @@ export default function Posts({
         </div>
         <div className="icos">
           <div className="lik">
-            <button onClick={handleLike}>
-              <AiOutlineLike className="iccc" />
+            <button onClick={handleLike} className="saasa">
+              {liked ?<AiTwotoneLike className="iccc" />: <AiOutlineLike className="iccc" /> }
             </button>
           </div>
-          <button onClick={handleCommentClick}>
+          <button onClick={handleCommentClick}  className="saasa">
             <div className="com">
               <FaRegComments className="iccc" />
             </div>

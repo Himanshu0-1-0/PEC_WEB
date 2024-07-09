@@ -6,7 +6,7 @@ import Posts from '../Dashboard/Posts/Posts';
 import './UserProfile.css';
 
 const UserProfile = () => {
-  const { userPosts } = useAuth();
+  const { userPosts,currentUser,isAuthority } = useAuth();
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -52,9 +52,43 @@ const UserProfile = () => {
   if (posts.length === 0) {
     return <p>No posts found for the current user.</p>;
   }
+  let yearPart = currentUser.displayName.substring(2, 4);
+
+  // Convert it to an integer
+  let year = parseInt(yearPart);
+
+  // Calculate the batch
+  let batchStart = 2000 + year;
+  let batchEnd = batchStart + 4;
+  let batch = `${batchStart}-${batchEnd}`;
+
+  let parts = currentUser.displayName.split(" ");
+  let name = parts[1];
+  let SID = parts[0].substr(2,);
 
   return (
     <div className="scfssf">
+      <div className="secp1">
+        <div className="pwpw">
+          <img src="/PEC.png" alt="Pec_Logo" className='ss-img' />
+        </div>
+        <div className="sdsda">
+          <div className="spsp">
+            <img src={currentUser.photoURL} alt="User pic" className='swa' />
+            
+            <div className='plp'>{name}</div>
+            <div className='plp ppl'>{currentUser.email}</div>
+          </div>
+          <div className="slsl">
+          <div className='alal'>Batch: {batch}</div>
+          <div className='alal'>Sid: {SID}</div>
+              <div className='alal'>No. of Posts- {userPosts.length}</div>
+              <div className='alal'>Authority: {isAuthority?"Yes":"No"}</div>
+             
+          </div>
+        </div>
+      </div>
+      <div className="dldd">
       {posts.map(post => (
         <Posts
           key={post.id}
@@ -67,6 +101,7 @@ const UserProfile = () => {
           comments={post.comments}
         />
       ))}
+      </div>
     </div>
   );
 };

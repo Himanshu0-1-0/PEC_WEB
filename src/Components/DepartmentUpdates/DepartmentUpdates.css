@@ -3,4 +3,13 @@
     background-color: #f4f2ee;
     padding-top:12vh ;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.dsda{
+    width: 60vw;
+}
+.dads{
+    width: 40vw;
 }

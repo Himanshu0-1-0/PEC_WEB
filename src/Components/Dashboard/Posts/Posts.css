@@ -39,6 +39,8 @@
     margin-bottom: 15px;
     color: #666;
     font-weight: 600;
+    white-space: pre-wrap; /* This ensures line breaks and whitespace are rendered correctly */
+    word-wrap: break-word; /* Optional: Ensures long words break correctly */
 }
 .three img{
     /* width: 600px; */
@@ -74,9 +76,7 @@
     height: 23px;
     color: #666;
 }
-.five{
-    /* background-color: blue; */
-}
+
 .inp-box{
     display: flex;
     align-items: center;
@@ -89,4 +89,8 @@
 }
 .jdj{
     font-weight: 600;
+}
+.saasa{
+    border: none;
+    background-color: #55555500;
 }

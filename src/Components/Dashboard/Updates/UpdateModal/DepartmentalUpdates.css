@@ -1,24 +1,69 @@
-/* App.css */
+/* DepartmentalUpdates.css */
+
+.Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75); /* Semi-transparent background */
+  z-index: 1000; /* Ensure the overlay is above other content */
+}
+
 .Modal {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    width: 300px;
-    max-width: 80%;
-    max-height: 80%;
-    overflow-y: auto;
-  }
-  
-  .Overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.75);
-  }
-  
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  max-width: 80%;
+  z-index: 1001; /* Ensure the modal is above the overlay */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.Modal h2 {
+  margin-top: 0;
+  font-size: 24px;
+  text-align: center;
+}
+
+.Modal label {
+  display: block;
+  margin: 15px 0;
+}
+
+.Modal select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.Modal button {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.Modal button:hover {
+  background-color: #0056b3;
+}
+
+.Modal button + button {
+  margin-left: 10px;
+  background-color: #6c757d;
+}
+
+.Modal button + button:hover {
+  background-color: #5a6268;
+}
