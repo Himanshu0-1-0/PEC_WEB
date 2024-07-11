@@ -68,9 +68,9 @@ const DepartmentUpdates = () => {
 
   return (
     <div className="conoo">
-      {isAuthority=="true"? <div className="dsda">
+      {isAuthority && <div className="dsda">
       <MakePost/>
-      </div>:undefined}
+      </div>}
      
       <div className="dads">
         {posts.length===0 && !loading && <h2>No Updates To Show...</h2>}
