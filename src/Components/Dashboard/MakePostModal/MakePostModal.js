@@ -38,6 +38,7 @@ export default function MakePostModal({ isOpen, onRequestClose }) {
     }
 
     try {
+      setMessage("Posting....");
       let photoUrl = "";
       if (photo) {
         const uniqueFilename = `${currentUser.uid}_${Date.now()}_${photo.name}`;

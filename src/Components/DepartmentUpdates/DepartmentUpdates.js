@@ -73,6 +73,7 @@ const DepartmentUpdates = () => {
       </div>:undefined}
      
       <div className="dads">
+        {posts.length===0 && !loading && <h2>No Updates To Show...</h2>}
       {posts.map(post => (
         <Post
           key={post.id}

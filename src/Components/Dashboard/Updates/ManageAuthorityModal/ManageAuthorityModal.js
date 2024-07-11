@@ -15,7 +15,7 @@ const ManageAuthorityModal = ({ isOpen, onRequestClose }) => {
   };
 
   const handleAuthorityUpdate = async () => {
-    setMessage('');
+    setMessage('Loading...');
     try {
       const usersRef = collection(db, 'users');
       const q = query(usersRef, where('email', '==', email));

@@ -11,5 +11,29 @@
     width: 60vw;
 }
 .dads{
-    width: 40vw;
+    width: 45vw;
+}
+@media(max-width:1000px){
+    .dsda{
+        width: 80vw;
+    }
+    .dads{
+        width: 70vw;
+    }
+}
+@media(max-width:600px){
+    .dsda{
+        width: 90vw;
+    }
+    .dads{
+        width: 94vw;
+    }
+}
+@media(max-width:393px){
+    .dsda{
+        width: 98vw;
+    }
+    .dads{
+        width: 98vw;
+    }
 }

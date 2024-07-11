@@ -58,40 +58,51 @@
   
   /* Features Section */
   .features {
-    padding: 50px 20px;
-    background-color: #f4f4f4;
+    padding: 120px 20px;
+    background-color: #f4f2ee;
     text-align: center;
   }
   
   .features h2 {
     margin-bottom: 30px;
+    color: #555;
   }
   
   .feature-card {
-    background-color: #fff;
+    background-color: #fdfff5;
     padding: 20px;
     margin: 10px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     display: inline-block;
     width: 30%;
-    height: 30vh;
+    min-height: 30vh;
     box-sizing: border-box;
   }
-  
+  .feature-card p{
+    color: #555;
+    font-weight: 600;
+    margin: 25px 10px;
+  }
   /* About Us Section */
   .about {
     display: flex;
     align-items: center;
-    padding: 50px 20px;
-    background-color: #fff;
+    padding: 130px 20px;
+    background-color: #fdfff5;
   }
   
   .about-text {
     flex: 1;
     padding: 20px;
   }
-  
+  .about-text h2{
+    color: #555;
+  }
+  .about-text p{
+    color: #555;
+    font-weight: 600;
+  }
   .about-image {
     flex: 1;
     text-align: center;
@@ -136,4 +147,3 @@
   .footer-bottom {
     margin-top: 20px;
   }
-  

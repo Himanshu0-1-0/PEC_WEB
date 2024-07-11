@@ -5,7 +5,7 @@ import Modal from "react-modal";
 
 Modal.setAppElement('#root'); // Set the app root element for accessibility
 
-const departments = ["CSE", "ECE", "EE", "MECH", "METALLURGY", "PRODUCTION"];
+const departments = ["CSE", "ECE", "EE", "MECH", "METALLURGY", "CIVIL","AEROSPACE","PRODUCTION"];
 const currentYear = new Date().getFullYear();
 const years = Array.from({ length: 5 }, (_, i) => currentYear + i);
 

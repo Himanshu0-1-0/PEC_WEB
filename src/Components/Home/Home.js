@@ -1,18 +1,22 @@
 import React from 'react';
 import './HomePage.css';
-
+import { useNavigate } from 'react-router-dom';
 const Home = () => {
+  const navigate = useNavigate();
+  const handleClick = ()=>{
+    navigate("/Dashboard");
+  }
   return (
     <div className="homepage">
       {/* Hero Section */}
       <section className="hero">
         <div className="hero-content">
           <h1>Welcome to PECWeb</h1>
-          <p>Your portal to connect, engage, and grow within the PEC community.</p>
-          <button className="cta-button">Get Started</button>
+          <p>Your portal to connect and engage within the PEC community.</p>
+          <button className="cta-button" onClick={handleClick}>Get Started</button>
         </div>
         <div className="hero-image">
-          <img src="/cover_tpo.png" alt="Hero" />
+          <img src="/Slider31_0.jpg" alt="Bg_Img.." />
         </div>
       </section>
 
@@ -20,15 +24,15 @@ const Home = () => {
       <section className="features">
         <h2>Features</h2>
         <div className="feature-card">
-          <h3>Feature 1</h3>
+          <h3>-------</h3>
           <p>Connect with fellow students and faculty through our interactive platform.</p>
         </div>
         <div className="feature-card">
-          <h3>Feature 2</h3>
+          <h3>-------</h3>
           <p>Stay updated with the latest news and events happening on campus.</p>
         </div>
         <div className="feature-card">
-          <h3>Feature 3</h3>
+          <h3>-------</h3>
           <p>Access resources and tools to help you succeed in your studies.</p>
         </div>
         {/* Add more feature cards as needed */}
@@ -46,7 +50,7 @@ const Home = () => {
           </p>
         </div>
         <div className="about-image">
-          <img src="path-to-your-about-image.jpg" alt="About PECWeb" />
+          <img src="/PEC_WEB.png" alt="About PECWeb" />
         </div>
       </section>
 
