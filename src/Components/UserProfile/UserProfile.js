@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { db } from '../../firebase';
-import { collection, query, where, getDocs } from 'firebase/firestore';
+import { collection, query, where, getDocs,orderBy } from 'firebase/firestore';
 import Posts from '../Dashboard/Posts/Posts';
 import './UserProfile.css';
 
@@ -18,8 +18,9 @@ const UserProfile = () => {
         if (userPosts.length > 0) {
           const postsQuery = query(
             collection(db, 'posts'),
-            where('__name__', 'in', userPosts)
-          );
+            where('__name__', 'in', userPosts),
+            orderBy('timestamp', 'desc') // Order by timestamp in descending order
+          ); 
 
           const postsSnapshot = await getDocs(postsQuery);
           const fetchedPosts = postsSnapshot.docs.map(doc => ({
@@ -41,17 +42,12 @@ const UserProfile = () => {
     fetchPosts();
   }, [userPosts]);
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
+  
   if (error) {
-    return <p>Error: {error}</p>;
+    return <h1 className='sdfsfa'>Error: {error}</h1>;
   }
 
-  if (posts.length === 0) {
-    return <p>No posts found for the current user.</p>;
-  }
+  
   let yearPart = currentUser.displayName.substring(2, 4);
 
   // Convert it to an integer
@@ -89,7 +85,7 @@ const UserProfile = () => {
         </div>
       </div>
       <div className="dldd">
-      {posts.map(post => (
+      {posts.length !== 0?posts.map(post => (
         <Posts
           key={post.id}
           id={post.id}
@@ -100,7 +96,7 @@ const UserProfile = () => {
           likes={post.likes}
           comments={post.comments}
         />
-      ))}
+      )):undefined}
       </div>
     </div>
   );

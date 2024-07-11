@@ -47,3 +47,37 @@
     background-color: #ff7c2a;
     color: #fdfff5;
 }
+
+@media (max-width: 1060px) {
+    .updates-cont{
+        position: absolute;
+        width: 70vw;
+    padding-bottom: 0px;
+    margin: 3vh 14vw;
+
+    }
+    .updt-logo{
+        display: none;
+    }
+    .dd1{
+        display: none;
+    }
+    .dd2{
+        display: none;
+    }
+    .updt-content{
+        flex-direction: row;
+        /* justify-content: space-around; */
+        
+    }
+}
+
+@media (max-width:642px){
+    .updates-cont{
+        width: 90vw;
+        margin: 3vh 5vw;
+    }
+    .sasafwq{
+        margin-right:10px ;
+    }
+}

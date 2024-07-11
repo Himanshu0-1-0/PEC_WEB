@@ -43,10 +43,11 @@ export default function Updates() {
         <DepartmentUpdatesButton isModalUpdateOpen={isModalUpdateOpen} closeUpdateModal={closeUpdateModal}/>
         </div>
         {isAuthority?
-        <button type="button" className="btn btn-danger"  onClick={openModal}>Manage Authority..</button>
+        <button type="button" className="btn btn-danger sasafwq"  onClick={openModal} >Manage Authority..</button>
       :undefined}
         <ManageAuthorityModal isOpen={isAuthModalOpen} onRequestClose={closeModal} />
       </div>
     </div>
   )
 }
+ 
