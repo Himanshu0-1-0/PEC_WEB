@@ -8,7 +8,6 @@ import './UserProfile.css';
 const UserProfile = () => {
   const { userPosts,currentUser,isAuthority } = useAuth();
   const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -32,10 +31,8 @@ const UserProfile = () => {
         } else {
           setPosts([]);
         }
-        setLoading(false);
       } catch (error) {
         setError(error.message);
-        setLoading(false);
       }
     };
 

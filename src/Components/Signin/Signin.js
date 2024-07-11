@@ -9,7 +9,7 @@ import "./Signin.css"
 const Login = () => {
   const navigate = useNavigate();
   const [error, setError] = useState(null);
-  const { currentUser,isAuthority,userPosts } = useAuth();
+  const { currentUser,userPosts } = useAuth();
 
   const handleGoogleLogin = async () => {
     try {

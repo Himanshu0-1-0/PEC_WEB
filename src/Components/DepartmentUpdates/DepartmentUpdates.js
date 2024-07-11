@@ -62,7 +62,7 @@ const DepartmentUpdates = () => {
         setLoading(false);
       }
     };
-
+    if(error) console.log(error)
     fetchPosts();
   }, [department, year]);
 

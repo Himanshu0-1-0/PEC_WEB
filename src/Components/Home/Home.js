@@ -64,16 +64,16 @@ const Home = () => {
           </div>
           <div className="footer-section">
             <h3>Follow Us</h3>
-            <p><a href="#">Facebook</a></p>
-            <p><a href="#">Twitter</a></p>
-            <p><a href="#">Instagram</a></p>
+            <p><>Facebook</></p>
+            <p><>Twitter</></p>
+            <p><>Instagram</></p>
           </div>
           <div className="footer-section">
             <h3>Quick Links</h3>
-            <p><a href="#">Home</a></p>
-            <p><a href="#">About</a></p>
-            <p><a href="#">Services</a></p>
-            <p><a href="#">Contact</a></p>
+            <p><>Home</></p>
+            <p><>About</></p>
+            <p><>Services</></p>
+            <p><>Contact</></p>
           </div>
         </div>
         <div className="footer-bottom">
